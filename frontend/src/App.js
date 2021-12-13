@@ -1,3 +1,7 @@
+import Headerlog from './components/LoginComp/Headerlogin'
+import Login from './components/LoginComp/Login'
+import Headerreg from './components/RegisterComp/HeaderReg'
+import Register from './components/RegisterComp/Register'
 import './App.css';
 import DatabaseContent from './components/DashboardComp/DatabaseContent'
 import AssignmentContent from './components/DashboardComp/AssignmentContent'
@@ -13,7 +17,12 @@ import RegisterTeacher from './components/RegisterComp/RegisterTeacher'
 
 function App() {
   return (
-    <div>
+    <div className = "container">
+      <Headerlog />
+      <Login />
+      <Headerreg />
+      <Register />
+      <div>
       <DatabaseContent />
       <AdminResultContent />
       <StudentResultContent />
@@ -21,6 +30,9 @@ function App() {
       <ProfileContent/>
       <RegisterTeacher />
     </div>
+    </div>
+    
+   
   )
 }
 
