@@ -1,29 +1,277 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-*{
+body {
   margin: 0;
-  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body{
-  font-family: 'Poppins', sans-serif;
-  box-sizing: content-box;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
-/* MUJEEB STYLE BEGINS HERE */
+
+
+/* styles for databaseContent by Samson */
+.main-container {
+margin: 25 auto;
+max-width: 80%;
+}
+
+img {
+width: 50px;
+}
+
+.table-cell-1 {
+padding-left: 1em;
+}
+
+td a {
+text-decoration: none;
+color: inherit;
+}
+.table-header{
+background-color: #A2158D;
+color:#f1f1f1;
+padding-top:22px;
+padding-right:22px;
+padding-bottom:22px;
+padding-left:22px;
+}
+.table-row-odd{
+background-color: rgb(236, 230, 236);
+
+
+}
+
+h1{
+font-size:30px;
+}
+.table-cell{
+text-align:center;
+}
+.table-cell-1{
+text-align:left;
+}
+a:hover{
+text-decoration:underline;
+}
+table{
+border-collapse:collapse;
+}
+table .table-data{
+padding-top:15px;
+padding-right:15px;
+padding-bottom:15px;
+padding-left:15px;
+}
+
+.flex{
+ display: flex;
+ align-items: center;
+}
+/* end of styles of databaseContent by Samson */
+
+
+/* Styles for assignmentContent by Samson */
+.noteContent { background:url(https://subtlepatterns.com/patterns/little_pluses.png) #cacaca; margin:30px; }
+
+#create, textarea  { 
+  float:left; 
+  padding:25px 25px 40px;
+  margin:0 20px 20px 0;
+  width:250px;
+  height:250px; 
+  font-family: url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
+}
+
+#create {
+  user-select:none;
+  padding:20px; 
+  border-radius:20px;
+  text-align:center; 
+  border:15px solid rgba(0,0,0,0.1); 
+  cursor:pointer;
+  color:rgba(0,0,0,0.1);
+  font:220px "Helvetica", sans-serif;
+  line-height:185px;
+}
+
+#create:hover { border-color:rgba(0,0,0,0.2); color:rgba(0,0,0,0.2); }
+
+textarea {
+  font:20px 'Gloria Hallelujah', cursive; 
+  line-height:1.5;
+  border:0;
+  border-radius:3px;
+  background: linear-gradient(#F9EFAF, #F7E98D);
+  box-shadow:0 4px 6px rgba(0,0,0,0.1);
+  overflow:hidden;
+  transition:box-shadow 0.5s ease;
+  /* font-smoothing:subpixel-antialiased; */
+  max-width:520px;
+  max-height:250px;
+}
+textarea:hover { box-shadow:0 5px 8px rgba(0,0,0,0.15); }
+textarea:focus { box-shadow:0 5px 12px rgba(0,0,0,0.2); outline:none; }
+
+/* end of styles for assigmentContent by Samson */
+
+/* style for searchar by samson */
+.search-container button:hover {
+  background: #ccc;
+}
+.search-container {
+  float: right;
+  padding: 6px 10px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0.4em;
+}
+/* end of style for searchbar */
+
+
+/* beggining of style for profile content */
+.profile {
+  margin: auto;
+  height: 710px;
+  width: 400px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+
+.header-color {
+  border-radius: 20px 20px 0 0;
+  padding-bottom: 150px;
+  width: 400px;
+  background: #A2158d;
+}
+
+.profile-pic img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 10px solid #ffffff;
+  margin-top: -100px;
+}
+
+.title {
+  margin-bottom: 25px;
+}
+
+
+.description {
+  margin-bottom: 25px;
+  color: #131b23;
+  letter-spacing: 0.01em;
+}
+
+.follow {
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  background: #D27Df4;
+  font-size: 18px;
+  letter-spacing: 0.025em;
+  border: none;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
+}
+
+button:hover {
+  width: 115px;
+  background: #4f759be0;
+}
+
+.flex{
+ display: flex;
+}
+.flexbox{
+ border: solid 3px rgb(236, 230, 236);
+ padding: 2em;
+ margin: 5px;
+}
+/* end of style for profile content */
+/* MUJEEB STYLE BEGINS HERE  line 12 - 77*/
 /* STYLE FOR NAVIGATION SIDE */
 .Navs{  
   display: flex;
-   width: 100px;
+   width: 350px;
    flex-direction: column;
-   height: 80vh;
-   color: white;
+   height: 100vh;
+   color: #122647;
    background-color: #A2158D;
-   padding: 50px;
-   gap: 30px;
+   gap: 50px;
+   align-items: center;
+   
  }
- img #logo{
-   width: 100px;
+ img{
+   width: auto;
+   height: 150px;
  }
+ .Navs p{
+   font-size: 16pt;
+   align-self: flex-start;
+   margin-left: 70px;
+ }
+
+ .Navs p:hover{
+   cursor: pointer;
+   height: 50px;
+   color: white;
+   background-color: #721063;
+   width: 300px;
+   text-align: center;
+   padding-top: 20px;
+   box-shadow: -18px -5px 20px 2px #db20bfa1;
+ }
+.list{
+  list-style: none;
+  margin-top: -50px;
+  margin-left: 50px;
+  display: none;
+  color: #32548E;
+  width: 70%;
+}
+ul li{
+  font-size: 14pt;
+  margin-top: 10px;
+}
+
+ul li:hover{
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#search-box{
+  height: 50px;
+  border: none;
+  color: white;
+  padding-left: 10px;
+  opacity: 40%;
+  width: 300px;
+  outline: none !important;
+}
+#search-box:active, #search-box:hover{
+  color:black;
+  opacity: 100%;
+}
+
+/* MUJEEB STYLE ENDS HERE */
 
  /*Login style*/
 
@@ -149,4 +397,65 @@ select{
   margin: 5px;
   padding: 3px 7px;
   font-size: 17px;
+}
+
+/* Funmi code for registration starts here  */
+#form-content{
+  margin: 40px auto;
+  width: 1000px;
+  height: 500px;
+  
+}
+
+input{
+  width: 300px;
+  height: 40px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.774);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+label{
+  display: flex;
+}
+#teacher-name{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+#line2{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+#line3, #line4, #line5{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+#line5{
+  margin-top: 40px;
+  display: block;
+  border: none;
+}
+input[type="button"]{
+  width: 1000px;
+  border: none;
+  background-color: green;
+  color: white;
+  font-size: 20pt;
+}
+
+input[type="file"]{
+  border: none;
+}
+
+input[type="button"]:hover{
+  background-color: rgb(1, 78, 1);
+
+}
+select{
+  height: 40px;
+  width: 200px;
 }
