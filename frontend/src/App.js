@@ -1,9 +1,17 @@
-import React from 'react'
-import Header from './components/HeaderComp/Header'
+import Headerlog from './components/LoginComp/Headerlogin'
+import Login from './components/LoginComp/Login'
+import Headerreg from './components/RegisterComp/HeaderReg'
+import Register from './components/RegisterComp/Register'
 
 const App = () => {
   return (
-    <Header />
+    <div className = "container">
+      <Headerlog />
+      <Login />
+      <Headerreg />
+      <Register />
+    </div>
+    
   )
 }
 
