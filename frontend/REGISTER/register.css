@@ -42,6 +42,9 @@ body{
 #subject-details:hover{
     cursor:pointer;
 }
+#oath-details:hover{
+    cursor:pointer;
+}
 
 .lines{
     margin-left: 30px;

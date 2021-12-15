@@ -1,36 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGISTER</title>
+    <title>REGISTER SUBJECT</title>
     <link rel="stylesheet" href="./subjectinfo.css">
 </head>
+
 <body>
     <div id="Register">
-        <div id="first-line"><h1>Register</h1></div>
+        <div id="first-line">
+            <h1>Register</h1>
+        </div>
         <div id="second-line">
             <div class="personal-details " id="personal-details">
-                <div><img src="https://img.icons8.com/windows/32/000000/checked-checkbox--v2.png"/></div>
+                <div><img src="https://img.icons8.com/windows/32/000000/checked-checkbox--v2.png" /></div>
                 <p>Personal details</p>
             </div>
             <div class="personal-details personal">
-               <div> <img src="https://img.icons8.com/windows/32/000000/checked-checkbox--v1.png"/></div>
+                <div> <img src="https://img.icons8.com/windows/32/000000/checked-checkbox--v1.png" /></div>
                 <p>Subject details</p>
             </div>
-        </div>
-        
-        
-        <div id="button-line">
-            <div class="btn back-btn">
-                <input type="button" value="back">
-            </div>
-            <div class="btn submit-btn">
-                <input type="button" value="submit">
+            <div class="personal-details" id="oath-details">
+                <div> <img src="https://img.icons8.com/windows/32/000000/checked-checkbox--v2.png" /></div>
+                <p>Oath</p>
             </div>
         </div>
+        <div class="lines">
+            <div>
+                <label for="class">Class:</label>
+            </div>
+            <div>
+                <select name="class" id="class">
+                    <option selected disabled>--Pick an Option--</option>
+                    <option value="Jss1">JSS1</option>
+                    <option value="Jss2">JSS2</option>
+                    <option value="Jss3">JSS3</option>
+                    <option value="Sss1">SSS1</option>
+                    <option value="Sss2">SSS2</option>
+                    <option value="Sss3">SSS3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="line">
+            <form action="" id="subject-select">
+                <div id="side1-table">
+                    <div>
+                        <label for="mathematics">Mathematics</label>
+                        <input type="checkbox" name="mathematics" id="mathematics">
+                    </div>
+                    <div>
+                        <label for="english">English-language</label>
+                        <input type="checkbox" name="english" id="english">
+                    </div>
+                    <div>
+                        <label for="C.R.K">C.R.K</label>
+                        <input type="checkbox" name="C.R.K" id="C.R.K">
+                    </div>
+                    <div>
+                        <label for="Yoruba">Yoruba</label>
+                        <input type="checkbox" name="Yoruba" id="Yoruba">
+                    </div>
+                    <div>
+                        <label for="Biology">Biology</label>
+                        <input type="checkbox" name="Biology" id="Biology">
+                    </div>
+                    <div>
+                        <label for="Physics">Physics</label>
+                        <input type="checkbox" name="Physics" id="Physics">
+                    </div>
+                    <div>
+                        <label for="Chemistry">Chemistry</label>
+                        <input type="checkbox" name="Chemistry" id="Chemistry">
+                    </div>
+                    <div>
+                        <label for="Economics">Economics</label>
+                        <input type="checkbox" name="Economics" id="Economics">
+                    </div>
+                    <div>
+                        <label for="Commerce">Commerce</label>
+                        <input type="checkbox" name="Commerce" id="Commerce">
+                    </div>
+                    </div>
+                    <div id="side2-table">
+                        <div>
+                            <label for="Basic-Science">Basic-Science</label>
+                            <input type="checkbox" name="Basic-Science" id="Basic-Science">
+                        </div>
+                        <div>
+                            <label for="Business-Studies">Business-Studies</label>
+                            <input type="checkbox" name="Business-Studies" id="Business-Studies">
+                        </div>
+                        <div>
+                            <label for="French">French</label>
+                            <input type="checkbox" name="French" id="French">
+                        </div>
+                        <div>
+                            <label for="P.H.E">P.H.E</label>
+                            <input type="checkbox" name="P.H.E" id="P.H.E">
+                        </div>
+                        <div>
+                            <label for="Social-Studies">Social-Studies</label>
+                            <input type="checkbox" name="Social-Studies" id="Social-Studies">
+                        </div>
+                        <div>
+                            <label for="Computer-Studies">Computer-Studies</label>
+                            <input type="checkbox" name="Computer-Studies" id="Computer-Studies">
+                        </div>
+                        <div>
+                            <label for="Agricultural-science">Agricultural-science</label>
+                            <input type="checkbox" name="Agricultural-science" id="Agricultural-science">
+                        </div>
+                    </div>
+                </div>
+                <div id="button-line">
+                    <div class="btn back-btn">
+                        <input type="button" value="back">
+                    </div>
+                    <div class="btn next-btn">
+                        <input type="button" value="next">
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+        
     </div>
     <script src="./studentinfo.js"></script>
 </body>
+
 </html>
