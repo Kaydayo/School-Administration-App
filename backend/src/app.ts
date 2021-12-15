@@ -1,13 +1,19 @@
 import createError, { HttpError } from 'http-errors';
-import express, {Request, Response, NextFunction} from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import connectDB from './db/connect'
+import studentsRouter from './routes/student'
+import authRouter from './routes/authRoutes'
+import dotenv from 'dotenv'
 
 var app = express();
+dotenv.config()
+
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
@@ -21,14 +27,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/', studentsRouter)
+app.use('/', authRouter)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err: HttpError, req: Request, res: Response, next:NextFunction) {
+app.use(function (err: HttpError, req: Request, res: Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -37,5 +45,16 @@ app.use(function(err: HttpError, req: Request, res: Response, next:NextFunction)
   res.status(err.status || 500);
   res.render('error');
 });
+
+const start = async () => {
+  try {
+    await connectDB('mongodb://localhost:27017/FMS-Academy');
+    console.log('Connecected to DB')
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
 
 export default app;
