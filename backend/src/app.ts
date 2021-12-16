@@ -7,8 +7,12 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import connectDB from './db/connect'
-import studentsRouter from './routes/student'
+import studentsRouter from './routes/students'
+import teachersRouter from './routes/teachers'
+import parentsRouter from './routes/parents'
 import authRouter from './routes/authRoutes'
+import classesRouter from './routes/classes'
+import subjectsRouter from './routes/subjects'
 import dotenv from 'dotenv'
 
 var app = express();
@@ -27,7 +31,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/', studentsRouter)
+app.use('/student', studentsRouter)
+app.use('/teacher', teachersRouter)
+app.use('/parent', parentsRouter)
+app.use('/classes', classesRouter)
+app.use('/subjectReg', subjectsRouter)
 app.use('/', authRouter)
 
 // catch 404 and forward to error handler
@@ -48,7 +56,7 @@ app.use(function (err: HttpError, req: Request, res: Response, next: NextFunctio
 
 const start = async () => {
   try {
-    await connectDB('mongodb://localhost:27017/FMS-Academy');
+    await connectDB('mongodb+srv://project:project@cluster0.le2cx.mongodb.net/schoolmgt?retryWrites=true&w=majority');
     console.log('Connecected to DB')
   } catch (error) {
     console.log(error);
