@@ -1,91 +1,89 @@
-import Student from '../models/Student';
+import Stakeholder from '../models/stakeholders';
 import {Request, Response, NextFunction} from 'express'
 import jwt from 'jsonwebtoken'
+import Student from '../models/students.model'
+import Teacher from '../models/teacher.model'
+import bcrypt from 'bcryptjs'
 
+const generateToken = (userId: string, email:string) => {
+    const token = jwt.sign({email}, process.env.JWT_SECRET as string, {
+        expiresIn: process.env.JWT_EXPIRES_IN
+    })
+    return token;
+}
 export const register = async (req:Request, res:Response) => {
- const { email, Firstname, Lastname, password, Middlename } = req.body;
-console.log('I was here')
+    try{
+     const userAlreadyExists = await Stakeholder.findOne({ email: req.body.email })
+    if (userAlreadyExists) {
+    return res.status(403).json({message:'Email already exists'});
+    }
+    const newData = {...req.body}
+    const stakeholder = await Stakeholder.create({...newData})
+    console.log(stakeholder)
+    const token = generateToken(stakeholder._id, newData.email);
 
- try {
-  if (!(Firstname && password && email && Lastname)) {
-   res.status(400).send('all fields are required')
-  }
+    if(stakeholder.user === 'student'){
+        await Student.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, userId: stakeholder._id, subjects: [], class: req.body.className  })
+    }
+    else if(stakeholder.user === 'teacher'){
+        await Teacher.create({fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,userId: stakeholder._id, subjects: [], class: [] })
+    }
+    else if (stakeholder.user === 'parent'){
+        await Student.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, subjects: [], class: req.body.className  })
+    }
 
-  const studentAlreadyExists = await Student.findOne({ email, Firstname, Lastname })
-  if (studentAlreadyExists) {
-   throw new Error('Email already exists');
-  }
-
-
-  const students = await Student.create({ email, Firstname, Lastname, password, Middlename })
+    stakeholder.password = undefined;
+    res.status(200).json({ message: 'signup successful', stakeholder, token })
+    } 
+    catch (err) {
+    console.log(err)
+    res.status(400).send('invalid')
+    }
+}
  
 
-  // Create token
-  const token = jwt.sign(
-   { email },
-   process.env.TOKEN_KEY as string,
-   {
-    expiresIn: "2hr",
-   }
-  )
-  
-  // save student token
-  students.token = token;
+export const login = async (req:Request, res:Response) => {
+    try{
+        const { email, password } = req.body;
+        if (!email || !password) {
+        throw new Error('Please provide email and password');
+        }
+        const user = await Stakeholder.findOne({email: req.body.email})
+        if(!user){
+            return res.status(400).json({message:'Invalid login credentials'});  
+        }
+        const match = await bcrypt.compare(req.body.password, user.password);
+        if(!match){
+            return res.status(400).json({
+                message: 'invalid login credentials'
+            })
+        }
 
-  res.status(200).json({ message: 'successful', data: { email, Firstname, Lastname, password, Middlename, token} })
- } catch (err: any) {
-  console.log('i came to this route')
-  res.status(400).send(err.message)
- }
+        const token = generateToken(user._id, user.email);
+        user.password = undefined;
+        res.status(201).json({
+            status: 'login successful',
+            data: {user, token}
+        })
+
+    }
+    catch (err){
+        console.log(err)
+    res.status(400).send('invalid')
+    }
 }
 
-export const login = async (req:Request, res:Response) => {
- const { email, password } = req.body;
-
- if (!email || !password) {
-  throw new Error('Please provide email and password');
- }
- const student = await Student.findOne({ email });
-
- if (!student) {
-  throw new Error('Invalid Credentials');
- }
-
- try {
-  const isPasswordCorrect = await student.comparePassword(password);
-  if (!isPasswordCorrect) {
-   throw new Error('Invalid Credentials');
-  }
-  // Create token
-  const { email } = student
-  const token = jwt.sign(
-   { user_id: student._id, email },
-   process.env.TOKEN_KEY as string,
-   {
-    expiresIn: "2h",
-   }
-  );
-
-  // save student token
-  student.token = token;
-  const { Firstname, DOB, Lastname } = student
-
-  res.status(200).json({ email, Firstname, Lastname, DOB, token });
- } catch (err) {
-  console.log(err)
-  res.status(400).send('student nor dey here')
- }
-};
 
 export const logout = async (req:Request, res:Response) => {
- try{
-  res.cookie('token', 'logout', {
-   httpOnly: true,
-   expires: new Date(Date.now() + 1000),
-  });
-  res.status(200).json({ msg: 'student logged out!' })
- } catch(err){
-  console.log(err)
-  res.status(400).send('student nor dey here')
- }
-};
+    try{
+        res.cookie('token', 'logout', {
+         httpOnly: true,
+        expires: new Date(Date.now() + 1000),
+    });
+        res.status(200).json({ msg: 'user logged out!' })
+    } 
+    catch(err){
+    console.log(err)
+    res.status(400).send('user not recorded')
+    }
+}
