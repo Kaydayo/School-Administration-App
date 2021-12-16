@@ -1,5 +1,5 @@
 //ROUTING WITH BUTTONS
-const next = document.querySelector('.next-btn input')
+
 const cancel = document.querySelector('.cancel-btn input')
 
 cancel.addEventListener('click', (e)=>{
@@ -15,23 +15,27 @@ subjectDetails.addEventListener('click', (e)=>{
     window.open("subjectinfo.html", "_self")
 })
 
+const oathDetails = document.getElementById('oath-details')
+oathDetails.addEventListener('click', (e)=>{
+    e.preventDefault()
+    window.open("oathinfo.html", "_self")
+})
+
 
 //RESTORE INFORMATION ENTERED ON REFRESH
-document.getElementById("first-name") =  getSavedValue("first-name")
-document.getElementById("middle-name") =  getSavedValue("middle-name")
-document.getElementById("last-name") =  getSavedValue("last-name")
-document.getElementById("email")=  getSavedValue("email")
-document.getElementById("dob") =  getSavedValue("dob")
-document.getElementById("nationality") =  getSavedValue("nationality")
-document.getElementById("phone-number") =  getSavedValue("phone-number")
-document.getElementById("occupation") =  getSavedValue("occupation")
-document.getElementById("home-address") =  getSavedValue("home-address")
-
-
+document.getElementById("first-name").value =  getSavedValue("first-name")
+document.getElementById("middle-name").value =  getSavedValue("middle-name")
+document.getElementById("last-name").value =  getSavedValue("last-name")
+document.getElementById("email").value=  getSavedValue("email")
+document.getElementById("dob").value =  getSavedValue("dob")
+document.getElementById("nationality").value =  getSavedValue("nationality")
+document.getElementById("phone-number").value =  getSavedValue("phone-number")
+document.getElementById("occupation").value =  getSavedValue("occupation")
+document.getElementById("home-address").value =  getSavedValue("home-address")
 
 function saveValue(e){
     var id = e.id;  
-    var val = e;
+    var val = e.value;
     localStorage.setItem(id, val)
 }
 
@@ -66,11 +70,12 @@ togglePassword2.addEventListener('click', function (e) {
 
 
 
-
-
+const error = document.getElementById('show-error')
+const next = document.querySelector('.next-btn input')
+console.log(next)
 //FORM VALIDATION
 next.addEventListener('click', (e)=>{
-    e.preventDefault()
+    
     let firstName = document.getElementById("first-name")
     let middleName = document.getElementById("middle-name")
     let lastName = document.getElementById("last-name")
@@ -81,10 +86,32 @@ next.addEventListener('click', (e)=>{
     let occupation = document.getElementById("occupation")
     let homeAddress = document.getElementById("home-address")
     if(!firstName.value){
-        alert('All credentials must be filled!')
-    }else if(confirmPassword.value !== password.value ){
-        alert('passwords do not match')
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!middleName.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!lastName.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!email.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!dob.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!nationality.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!phoneNumber.value ){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!occupation.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!homeAddress.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!password.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(!confirmPassword.value){
+        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
+    }else if(password.value !== confirmPassword.value){
+        console.log('try')
+        error.innerHTML = `<p style="color:red" class='lines'> passwords do not match ❌ </p>`
     }else{
+        error.innerHTML = ''
         window.open("subjectinfo.html", "_self")
     }
     
