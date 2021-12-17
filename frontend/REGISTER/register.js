@@ -39,7 +39,7 @@ function saveValue(e){
     localStorage.setItem(id, val)
 }
 
-function getSavedValue  (v){
+function getSavedValue(v){
     if (!localStorage.getItem(v)) {
         return "";
     }
@@ -75,7 +75,7 @@ const next = document.querySelector('.next-btn input')
 console.log(next)
 //FORM VALIDATION
 next.addEventListener('click', (e)=>{
-    
+    e.preventDefault()
     let firstName = document.getElementById("first-name")
     let middleName = document.getElementById("middle-name")
     let lastName = document.getElementById("last-name")
@@ -85,6 +85,10 @@ next.addEventListener('click', (e)=>{
     let phoneNumber = document.getElementById("phone-number")
     let occupation = document.getElementById("occupation")
     let homeAddress = document.getElementById("home-address")
+    let p = document.getElementById("select-state")
+    let stateOfOrigin = p.options[p.selectedIndex].text
+    let f = document.getElementById("user")
+    let user = f.options[f.selectedIndex].text
     if(!firstName.value){
         error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
     }else if(!middleName.value){
@@ -112,7 +116,46 @@ next.addEventListener('click', (e)=>{
         error.innerHTML = `<p style="color:red" class='lines'> passwords do not match ❌ </p>`
     }else{
         error.innerHTML = ''
-        window.open("subjectinfo.html", "_self")
+        let details = {
+            "firstname": firstName.value,
+            "middlename": middleName.value,
+            "lastname": lastName.value,
+            "email": email.value,
+            "address": homeAddress.value,
+            "DOB": dob.value,
+            "phoneNo": phoneNumber.value,
+            "nationality": nationality.value,
+            "stateOfOrigin": stateOfOrigin,
+            "password": password.value.toString(),
+            "user": user.toLowerCase(),
+            "isAdmin": false
+        }
+        
+       regUser('http://localhost:4000/users/register', details)
+       .then(endData => {
+           alert(endData.message)
+           localStorage.setItem('oathinfo', [endData.stakeholder.firstname, endData.stakeholder.lastname ])
+           localStorage.setItem('regInfo', JSON.stringify(endData.stakeholder))
+           if(endData.stakeholder.user !== 'student'){
+            window.open('oathinfo.html', '_self')
+           }else{
+            window.open('subjectinfo.html', '_self')
+           }
+        })
+       .catch(error=>console.log(error))
+        
     }
     
 })
+
+async function regUser(url, data){
+   const res = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-type':'application/json'},
+        body: JSON.stringify(data)
+    })
+
+    const endData = await res.json()
+    console.log(endData.message)
+    return endData
+}

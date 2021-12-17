@@ -1,3 +1,15 @@
+const oathinfo = localStorage.getItem('oathinfo')
+if(!oathinfo){
+    alert('kindly fill out registeration form')
+    window.open('register.html', '_self')
+}
+const oathArr = oathinfo.split(',')
+const first = document.getElementById('first')
+const second = document.getElementById('second') 
+first.value = oathArr[0]
+second.value = oathArr[1]
+
+
 const back = document.querySelector('.back-btn input')
 const next =  document.querySelector('.submit-btn input')
 back.addEventListener('click', (e)=>{
@@ -7,7 +19,8 @@ back.addEventListener('click', (e)=>{
 
 next.addEventListener('click', (e)=>{
     e.preventDefault()
-    window.open("oathinfo.html", "_self")
+    localStorage.clear()
+    window.open("../LOGIN/login.html", "_self")
 })
 
 
@@ -28,3 +41,4 @@ subjectDetails.addEventListener('click',(e)=>{
     e.preventDefault()
     window.open('subjectinfo.html', "_self")
 })
+
