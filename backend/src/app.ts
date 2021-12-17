@@ -1,7 +1,6 @@
 import createError, { HttpError } from 'http-errors';
 import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
-import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
@@ -15,6 +14,7 @@ import authRouter from './routes/authRoutes'
 import classesRouter from './routes/classes'
 import subjectsRouter from './routes/subjects'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 var app = express();
 dotenv.config()

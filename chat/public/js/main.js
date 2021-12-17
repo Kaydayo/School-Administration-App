@@ -31,3 +31,20 @@ function outputMessage(message){
     divNew.innerHTML= `<p id='lil-info'>${message.username}  <span> ${message.time}</span></p><p> ${message.text}</p>`
     document.getElementById('chart-content').appendChild(divNew)
 }
+
+fetch("http://localhost:4000/student")
+.then(res => res.json())
+.then(allData => {
+    const studentData = allData.students
+    const showGrp = document.getElementById('Group-members')
+    const grpMem = document.createElement('div')
+    studentData.map(el => {
+        grpMem.classList.add('all-members')
+        grpMem.innerHTML += `
+            <p>${el.firstname} ${el.lastname}</p>
+         `  
+    })
+    showGrp.appendChild(grpMem)
+})
+
+localStorage.getItem(userInfo)

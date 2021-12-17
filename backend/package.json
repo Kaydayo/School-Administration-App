@@ -9,6 +9,7 @@
     "compile:watch": "yarn tsc -w"
   },
   "dependencies": {
+    "@types/cors": "^2.8.12",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "jade": "~1.11.0",

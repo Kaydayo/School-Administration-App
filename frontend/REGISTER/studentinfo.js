@@ -5,8 +5,47 @@ back.addEventListener('click', (e)=>{
     window.open('register.html', '_self')
 })
 
-next.addEventListener('click', (e)=>{
+function getCheckedBoxes(){
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+    let checkboxesChecked = []
+    for(let i = 0; i<checkboxes.length; i++){
+        if(checkboxes[i].checked){
+            checkboxesChecked.push(checkboxes[i].value)
+        }
+    }
+    return checkboxesChecked
+}
+next.addEventListener('click', async (e)=>{
     e.preventDefault()
+    const userInfo = JSON.parse(localStorage.getItem("regInfo"))
+    id = userInfo._id;
+   
+    let subjects = getCheckedBoxes()
+
+
+    const allSubjects =  subjects.map(async (subject) => {
+        const body = {subject:subject}
+
+        const data = await fetch(`http://localhost:4000/subjectReg/${id}`,{
+            method: 'PUT',
+            headers: {'Content-type':'application/json'},
+            body: JSON.stringify(body)
+        });
+
+        return data;
+
+        // .then(res => res.json())
+        // .then(newRes => console.log(newRes))
+    })
+
+    const resolvedallSUbjects = await Promise.all(allSubjects);
+
+    const result = resolvedallSUbjects.map(async (data) => {
+        return data.json()
+    })
+    console.log(await Promise.all(result));
+
+    alert( `${subjects.length} subjects added successfully`)
     window.open("oathinfo.html", "_self")
 })
 

@@ -42,7 +42,7 @@ const StakeholderSchema = new mongoose.Schema({
      minlength: 6,
     },
     DOB: {
-     type: Date,
+     type: String,
     },
     phoneNo: {
         type: Number,
