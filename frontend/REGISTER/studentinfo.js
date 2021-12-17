@@ -15,25 +15,38 @@ function getCheckedBoxes(){
     }
     return checkboxesChecked
 }
-next.addEventListener('click', (e)=>{
+next.addEventListener('click', async (e)=>{
     e.preventDefault()
     const userInfo = JSON.parse(localStorage.getItem("regInfo"))
-    id = userInfo.user._id
+    id = userInfo._id;
    
     let subjects = getCheckedBoxes()
-    console.log(subjects)
-    subjects.forEach(subject => {
-        console.log(subject)
-        fetch(`http://localhost:4000/subjectReg/${id}`,{
+
+
+    const allSubjects =  subjects.map(async (subject) => {
+        const body = {subject:subject}
+
+        const data = await fetch(`http://localhost:4000/subjectReg/${id}`,{
             method: 'PUT',
             headers: {'Content-type':'application/json'},
-            body: JSON.stringify({"subject":subject})
-        })
-        .then(res => res.json())
-        .then(newRes => console.log(newRes) )
+            body: JSON.stringify(body)
+        });
+
+        return data;
+
+        // .then(res => res.json())
+        // .then(newRes => console.log(newRes))
     })
+
+    const resolvedallSUbjects = await Promise.all(allSubjects);
+
+    const result = resolvedallSUbjects.map(async (data) => {
+        return data.json()
+    })
+    console.log(await Promise.all(result));
+
     alert( `${subjects.length} subjects added successfully`)
-    // window.open("oathinfo.html", "_self")
+    window.open("oathinfo.html", "_self")
 })
 
 

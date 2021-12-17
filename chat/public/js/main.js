@@ -37,11 +37,14 @@ fetch("http://localhost:4000/student")
 .then(allData => {
     const studentData = allData.students
     const showGrp = document.getElementById('Group-members')
-    studentData.forEach(el => {
-        const grpMem = document.createElement('div')
+    const grpMem = document.createElement('div')
+    studentData.map(el => {
         grpMem.classList.add('all-members')
-        // grpMem.innerHTML = 
-
+        grpMem.innerHTML += `
+            <p>${el.firstname} ${el.lastname}</p>
+         `  
     })
-      
+    showGrp.appendChild(grpMem)
 })
+
+localStorage.getItem(userInfo)

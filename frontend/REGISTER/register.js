@@ -142,7 +142,6 @@ next.addEventListener('click', (e)=>{
             window.open('subjectinfo.html', '_self')
            }
         })
-       .catch(error=>console.log(error))
         
     }
     

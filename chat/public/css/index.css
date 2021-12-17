@@ -149,6 +149,21 @@ body{
 #lil-info span{
     color: red;
 }
+.all-members{
+    height: 60vh;
+    overflow:scroll;
+} 
+.all-members p{
+    color: #35558D;
+    height: 40px;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 2px;
     
+}
 
+#avatar img{
+    width: auto;
+    height: 60px;
+}
 
