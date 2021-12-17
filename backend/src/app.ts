@@ -1,6 +1,7 @@
 import createError, { HttpError } from 'http-errors';
 import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
+import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
@@ -23,6 +24,7 @@ dotenv.config()
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'jade');
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

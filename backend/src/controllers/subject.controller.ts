@@ -3,7 +3,7 @@ import {Request, Response} from 'express'
 
 export const getStudentSubjects = async(req:Request, res:Response) => {
     try{
-        const subject = await Student.findOne({userId: req.params.id});
+        const subject = await Student.findOne({userId:req.params.id});
         if (!subject) {
             throw new Error(`No user with id : ${req.params.id}`);
            }
@@ -15,12 +15,28 @@ export const getStudentSubjects = async(req:Request, res:Response) => {
     }
     
 }
+
+export const getAllStudentsSubjects = async(req:Request, res:Response) => {
+    try{
+        const subject = await Student.find();
+        res.status(201).json({message:"successful", subject})
+    }
+    catch(err){
+        console.log(err)
+        res.status(400).send('Not Found')
+    
+    }
+}
    
    
 
 export const updateStudentSubjects = async(req:Request, res:Response) =>{
     try{
-        const subject = await Student.findOneAndUpdate({userId:req.params.id}, req.body, {new:true})
+        const subject = await Student.findOneAndUpdate({userId:req.params.id}, {
+            $push: {
+                subjects: req.body
+            }
+        }, {new:true})
         res.status(200).json({ message: 'successful', subject })
     } 
     catch (err: any) {
@@ -28,4 +44,20 @@ export const updateStudentSubjects = async(req:Request, res:Response) =>{
         res.status(400).send(err.message)
     }
     
+}
+
+
+export const updateGrade = async(req:Request, res:Response) =>{
+    try{
+        const subject = await Student.findOneAndUpdate({userId:req.params.id, subjects: {$elemMatch:{subject:req.body.subject}}}, {
+            $set:{"subjects.$.grade":req.body.grade}
+        }, {new:true, safe:true, upsert: true})
+
+        console.log(subject.subjects)
+        res.status(200).json({ message: 'successful', subject })
+    } 
+    catch(err:any){
+        console.log(err)
+        res.status(400).send(err.message)
+    }      
 }
