@@ -13,19 +13,21 @@ export const getStudentSubjects = async(req:Request, res:Response) => {
         console.log(err)
     res.status(400).send('Not Found')
     }
-    
 }
    
    
 
-export const updateStudentSubjects = async(req:Request, res:Response) =>{
-    try{
-        const subject = await Student.findOneAndUpdate({userId:req.params.id}, req.body, {new:true})
+export const updateStudentSubjects = async (req: Request, res: Response) => {
+    try {
+        const subject = await Student.findOneAndUpdate({ userId: req.params.id }, {
+            $push: {
+                subjects: req.body
+            }
+        }, { new: true })
         res.status(200).json({ message: 'successful', subject })
-    } 
+    }
     catch (err: any) {
         console.log(err)
         res.status(400).send(err.message)
     }
-    
 }

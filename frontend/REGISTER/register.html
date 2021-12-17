@@ -46,7 +46,7 @@
             </div>
             <div>
                 <div><label for="dob">DOB</label></div>
-                <div class="text-box"><input type="date" id="dob" onkeyup='saveValue(this)' required></div>
+                <div class="text-box"><input type="date" id="dob" min="1997-01-01" max='2012-01-01' onkeyup='saveValue(this)' required></div>
             </div>
             <div>
                 <div><label for="stateoforigin">State Of Origin</label></div>
@@ -150,6 +150,6 @@
             </div>
         </div>
     </div>
-    <script src="./register.js"></script>
+    <script src="./register.js" async></script>
 </body>
 </html>
