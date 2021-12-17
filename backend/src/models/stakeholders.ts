@@ -33,7 +33,6 @@ const StakeholderSchema = new mongoose.Schema({
     password: {
      type: String,
      required: true,
-     minlength: 6
     },
     
     address: {
@@ -53,7 +52,7 @@ const StakeholderSchema = new mongoose.Schema({
     nationality: {
      type: String,
      required: true,
-     minlength: 6
+     
     },
     stateOfOrigin: {
      type: String,

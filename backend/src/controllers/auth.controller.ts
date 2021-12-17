@@ -87,3 +87,20 @@ export const logout = async (req:Request, res:Response) => {
     res.status(400).send('user not recorded')
     }
 }
+
+
+//update user's admin status
+
+
+
+export const updateUserAuth = async(req:Request, res:Response) =>{
+    try{
+        const subject = await Stakeholder.update({_id: req.params.id}, {$set: {admin: req.body}},{upsert:true})
+        res.status(200).json({ message: 'successful', subject })
+    }
+    catch (err: any) {
+        console.log(err)
+        res.status(400).send(err.message)
+    }
+    
+}
