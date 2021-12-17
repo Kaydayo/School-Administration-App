@@ -1,15 +1,18 @@
 //	window.addEventListener("resize", function() {
 //		"use strict"; window.location.reload();
 //	});
-
-document.addEventListener('DOMContentLoaded', function () {
+const token = localStorage.getItem("userInfo")
+  if (!token) {
+    window.open("../LOGIN/login.html", "_self")
+  }
+document.addEventListener('DOMContentLoaded', function (e) {
   /////// Prevent closing from click inside dropdown
+  
   document.querySelectorAll('.dropdown-menu').forEach(function (element) {
     element.addEventListener('click', function (e) {
       e.stopPropagation()
     })
   })
-
   // make it as accordion for smaller screens
   if (window.innerWidth < 992) {
     // close all inner dropdowns when parent is closed
@@ -44,3 +47,4 @@ document.addEventListener('DOMContentLoaded', function () {
   // end if innerWidth
 })
 // DOMContentLoaded  end
+

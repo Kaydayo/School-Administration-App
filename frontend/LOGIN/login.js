@@ -1,5 +1,7 @@
 const Login = document.querySelector('#log-button')
-
+document.addEventListener('DOMContentLoaded', ()=>{
+    localStorage.clear()
+} )
 Login.addEventListener('click', (e) => {
     const password = document.getElementById('log-password').value
     const email = document.getElementById('log-email').value
@@ -11,7 +13,13 @@ Login.addEventListener('click', (e) => {
         if(parseData.status){
             localStorage.setItem('userInfo', JSON.stringify(parseData.data))
             alert(parseData.status)
-            //redirect here
+            if(parseData.data.user.user === "parent"){
+                window.open("../PARENTS/parent.html","_self")
+            }else if(parseData.data.user.user == "student"){
+                window.open("../STUDENTS/student.html", "_self")
+            }else if(parseData.data.user.user == "teacher"){
+                window.open("../TEACHERS/teachers.html", "_self")
+            }
         }else{
             showerr.innerHTML = `<p style='color:red'>${parseData.message}</p>`
 
