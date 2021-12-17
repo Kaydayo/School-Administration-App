@@ -45,3 +45,19 @@ export const updateStudentSubjects = async(req:Request, res:Response) =>{
     }
     
 }
+
+
+export const updateGrade = async(req:Request, res:Response) =>{
+    try{
+        const subject = await Student.findOneAndUpdate({userId:req.params.id, subjects: {$elemMatch:{subject:req.body.subject}}}, {
+            $set:{"subjects.$.grade":req.body.grade}
+        }, {new:true, safe:true, upsert: true})
+
+        console.log(subject.subjects)
+        res.status(200).json({ message: 'successful', subject })
+    } 
+    catch(err:any){
+        console.log(err)
+        res.status(400).send(err.message)
+    }      
+}
