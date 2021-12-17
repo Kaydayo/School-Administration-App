@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 
 
 const SubjectSchema = new mongoose.Schema({
-    
         subject: String,
         instructor: String,
         grade: Number
