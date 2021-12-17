@@ -56,5 +56,4 @@ export const updateStudentSubjects = async(req:Request, res:Response) =>{
 }
 =======
     
-}
 >>>>>>> 90f5bae00c74dadc7af15da762c45e6dac72e0d0
