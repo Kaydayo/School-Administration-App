@@ -11,7 +11,7 @@
 
 
 .main {
-  background: #35558d;
+  background: white;
 }
 
 .modal {
@@ -79,9 +79,12 @@ h2 {
 }
 
 .card-title {
-  color: #35558d;
+  color: white;
 }
 
 .round {
   border-radius: 50%;
+}
+.card-img-top{
+    border-radius: 50%;
 }

@@ -70,22 +70,21 @@ showModal.addEventListener('click', (e) => {
     let subject = document.querySelector('.text')
     let grade = document.querySelector('.number')
     const obj = {
-      "subject": subject.value,
-      "grade": grade.value,
+      subject: subject.value,
+      grade: grade.value,
     }
     console.log(obj)
-        fetch('http://localhost:4000/subjectReg/grade/61bc6b787610a7b653fc37de', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(obj),
-        })
-          .then((raw) => raw.json())
-          .then((data) => console.log(data))
-          .catch((err) => console.log(err))
-    
-  } 
+    fetch('http://localhost:4000/subjectReg/grade/61bc6b787610a7b653fc37de', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(obj),
+    })
+      .then((raw) => raw.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err))
+  }
 })
 
 // let fm = document.querySelector('#form')
