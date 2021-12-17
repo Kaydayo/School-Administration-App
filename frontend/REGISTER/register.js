@@ -135,6 +135,7 @@ next.addEventListener('click', (e)=>{
        .then(endData => {
            alert(endData.message)
            localStorage.setItem('oathinfo', [endData.stakeholder.firstname, endData.stakeholder.lastname ])
+           localStorage.setItem('regInfo', JSON.stringify(endData.stakeholder))
            if(endData.stakeholder.user !== 'student'){
             window.open('oathinfo.html', '_self')
            }else{
