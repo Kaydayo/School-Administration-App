@@ -29,15 +29,6 @@ export const getAllStudentsSubjects = async(req:Request, res:Response) => {
    
    
 
-<<<<<<< HEAD
-export const updateStudentSubjects = async (req: Request, res: Response) => {
-    try {
-        const subject = await Student.findOneAndUpdate({ userId: req.params.id }, {
-            $push: {
-                subjects: req.body
-            }
-        }, { new: true })
-=======
 export const updateStudentSubjects = async(req:Request, res:Response) =>{
     try{
         const subject = await Student.findOneAndUpdate({userId:req.params.id}, {
@@ -45,15 +36,11 @@ export const updateStudentSubjects = async(req:Request, res:Response) =>{
                 subjects: req.body
             }
         }, {new:true})
->>>>>>> 90f5bae00c74dadc7af15da762c45e6dac72e0d0
         res.status(200).json({ message: 'successful', subject })
     }
     catch (err: any) {
         console.log(err)
         res.status(400).send(err.message)
     }
-<<<<<<< HEAD
-}
-=======
     
->>>>>>> 90f5bae00c74dadc7af15da762c45e6dac72e0d0
+}
