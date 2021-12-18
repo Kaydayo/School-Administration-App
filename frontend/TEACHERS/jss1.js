@@ -73,8 +73,11 @@ showModal.addEventListener('click', (e) => {
       subject: subject.value,
       grade: grade.value,
     }
-    console.log(obj)
-    fetch('http://localhost:4000/subjectReg/grade/61bc6b787610a7b653fc37de', {
+
+    
+    const userData = JSON.parse(localStorage.getItem('userInfo'))
+    const id = userData.user._id
+    fetch(`http://localhost:4000/subjectReg/grade/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -86,23 +89,3 @@ showModal.addEventListener('click', (e) => {
       .catch((err) => console.log(err))
   }
 })
-
-// let fm = document.querySelector('#form')
-// function onSubmit() {
-//   fm.addEventListener('submit', (e) => {
-//     const obj = {}
-//     new FormData(fm).forEach((value, key) => (obj[key] = value))
-//     fetch('http://localhost:4000/subjectReg/grade/61bc6b787610a7b653fc37de', {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(obj),
-//     })
-//       .then((raw) => raw.json())
-//       .then((data) => console.log(data))
-//       .catch((err) => console.log(err))
-//   })
-// }
-
-// onSubmit()
