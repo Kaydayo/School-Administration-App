@@ -1,5 +1,6 @@
 import express from 'express'
 import {getAllStudents, getSingleStudent, createStudent, updateStudent, deleteStudent} from '../controllers/student.controller'
+import auth from '../middleware/auth'
 
 
 const router = express.Router();

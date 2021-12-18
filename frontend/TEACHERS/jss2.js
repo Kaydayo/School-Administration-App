@@ -54,13 +54,6 @@ async function main() {
   })
 }
 
-// const newEl = document.querySelectorAll('.form-control')
-// console.log(newEl)
-// const update = document.querySelector('.update')
-// update.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   newEl.map((el) => console.log(el.value))
-// })
 
 console.log('SHOW MODAL', showModal)
 
@@ -73,6 +66,7 @@ showModal.addEventListener('click', (e) => {
       subject: subject.value,
       grade: grade.value,
     }
+<<<<<<< HEAD
     console.log(obj)
     fetch('http://localhost:4000/subjectReg/grade/61bc6b787610a7b653fc37de', {
       method: 'PUT',
@@ -82,8 +76,9 @@ showModal.addEventListener('click', (e) => {
       body: JSON.stringify(obj),
     })
       .then((raw) => raw.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err))
+       .then((data) => console.log(data))
+       .catch((err) => console.log(err))
+>>>>>>> d97062aa401353edad17829fc1aa194ed2522cee
   }
 })
 
@@ -93,7 +88,6 @@ showModal.addEventListener('click', (e) => {
 //     const obj = {}
 //     new FormData(fm).forEach((value, key) => (obj[key] = value))
 //     fetch('http://localhost:4000/subjectReg/grade/61bc6b787610a7b653fc37de', {
-//       method: 'PUT',
 //       headers: {
 //         'Content-Type': 'application/json',
 //       },

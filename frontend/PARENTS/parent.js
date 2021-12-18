@@ -1,10 +1,6 @@
 //	window.addEventListener("resize", function() {
 //		"use strict"; window.location.reload();
 //	});
-const token = localStorage.getItem("userInfo")
-  if (!token) {
-    window.open("../LOGIN/login.html", "_self")
-  }
 document.addEventListener('DOMContentLoaded', function (e) {
   /////// Prevent closing from click inside dropdown
   
@@ -47,4 +43,3 @@ document.addEventListener('DOMContentLoaded', function (e) {
   // end if innerWidth
 })
 // DOMContentLoaded  end
-
