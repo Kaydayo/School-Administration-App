@@ -114,6 +114,8 @@ next.addEventListener('click', (e)=>{
     }else if(password.value !== confirmPassword.value){
         console.log('try')
         error.innerHTML = `<p style="color:red" class='lines'> passwords do not match ❌ </p>`
+    }if(password.value.length < 6){
+        document.getElementById('pass-err').innerText = `* min of 6 characters`
     }else{
         error.innerHTML = ''
         let details = {
