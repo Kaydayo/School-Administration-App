@@ -73,9 +73,9 @@ const StakeholderSchema = new mongoose.Schema({
         enum:['teacher', 'student', 'parent']
     },
 
-    className:{
-        type:String
-    },
+    // className:{
+    //     type:String
+    // },
 
     admin:{
     type: Boolean

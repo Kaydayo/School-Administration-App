@@ -16,7 +16,7 @@ export const getWards = async(req:Request, res: Response) => {
     }
 }
 
-export const getAsingle = async(req:Request, res:Response) => {
+export const getAsingleWard = async(req:Request, res:Response) => {
     try{
         const ward = await Parent.findOne({userId:req.params.id});
         if (!ward) {
