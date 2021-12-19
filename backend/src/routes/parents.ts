@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllParents, getSingleParent, createParent, updateParent, deleteParent } from '../controllers/parent.controller';
+import { getAllParents, getSingleParent, createParent, updateParent, deleteParent} from '../controllers/parent.controller';
 
 const router = express.Router();
 

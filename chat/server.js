@@ -5,6 +5,7 @@ const socketio = require('socket.io')
 const formatMessage =  require('./utils/messages')
 const {userJoin, getCurrentUser, userLeave} = require('./utils/users')
 
+
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
@@ -42,6 +43,8 @@ io.on('connection', socket => {
     }); 
     
 } )
+
+
 
 
 

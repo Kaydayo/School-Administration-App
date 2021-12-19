@@ -30,8 +30,8 @@ document.getElementById("email").value=  getSavedValue("email")
 document.getElementById("dob").value =  getSavedValue("dob")
 document.getElementById("nationality").value =  getSavedValue("nationality")
 document.getElementById("phone-number").value =  getSavedValue("phone-number")
-document.getElementById("occupation").value =  getSavedValue("occupation")
 document.getElementById("home-address").value =  getSavedValue("home-address")
+
 
 function saveValue(e){
     var id = e.id;  
@@ -83,12 +83,14 @@ next.addEventListener('click', (e)=>{
     let dob = document.getElementById("dob")
     let nationality = document.getElementById("nationality")
     let phoneNumber = document.getElementById("phone-number")
-    let occupation = document.getElementById("occupation")
+    // let occupation = document.getElementById("occupation")
     let homeAddress = document.getElementById("home-address")
     let p = document.getElementById("select-state")
     let stateOfOrigin = p.options[p.selectedIndex].text
     let f = document.getElementById("user")
     let user = f.options[f.selectedIndex].text
+    let g = document.getElementById('gender')
+    let gender = g.options[g.selectedIndex].text
     if(!firstName.value){
         error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
     }else if(!middleName.value){
@@ -102,8 +104,6 @@ next.addEventListener('click', (e)=>{
     }else if(!nationality.value){
         error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
     }else if(!phoneNumber.value ){
-        error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
-    }else if(!occupation.value){
         error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
     }else if(!homeAddress.value){
         error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
@@ -130,13 +130,14 @@ next.addEventListener('click', (e)=>{
             "stateOfOrigin": stateOfOrigin,
             "password": password.value.toString(),
             "user": user.toLowerCase(),
+            "gender":gender.toLowerCase(),
             "isAdmin": false
         }
-        
+        console.log(details)
        regUser('http://localhost:4000/users/register', details)
        .then(endData => {
            alert(endData.message)
-           localStorage.setItem('oathinfo', [endData.stakeholder.firstname, endData.stakeholder.lastname ])
+           localStorage.setItem('oathinfo', [endData.stakeholder.firstName, endData.stakeholder.lastName ])
            localStorage.setItem('regInfo', JSON.stringify(endData.stakeholder))
            if(endData.stakeholder.user !== 'student'){
             window.open('oathinfo.html', '_self')

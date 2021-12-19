@@ -13,6 +13,8 @@ import parentsRouter from './routes/parents'
 import authRouter from './routes/authRoutes'
 import classesRouter from './routes/classes'
 import subjectsRouter from './routes/subjects'
+import teacherSubjectRouter from './routes/teacherSubject'
+import wardsRouter from './routes/wards'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -38,6 +40,8 @@ app.use('/teacher', teachersRouter)
 app.use('/parent', parentsRouter)
 app.use('/classes', classesRouter)
 app.use('/subjectReg', subjectsRouter)
+app.use('/ward', wardsRouter)
+app.use('/teacherSubject', teacherSubjectRouter)
 app.use('/', authRouter)
 
 // catch 404 and forward to error handler

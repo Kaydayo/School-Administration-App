@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import Subjects from './subject.model'
 
 const StudentSchema = new mongoose.Schema({
     fullname : String,
@@ -9,7 +8,9 @@ const StudentSchema = new mongoose.Schema({
         instructor: String,
         grade: Number
     }],
-    class: String
+    class: String,
+    parentEmail: String,
+    parentName: String
 })
 
 export default mongoose.model('Student', StudentSchema);
