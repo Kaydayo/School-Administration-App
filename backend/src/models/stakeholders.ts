@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 
 
 const StakeholderSchema = new mongoose.Schema({
+
     firstname: {
      type: String,
      required: true,
@@ -22,6 +23,11 @@ const StakeholderSchema = new mongoose.Schema({
      minlength: 2,
      maxlength: 50,
     },
+    gender:{
+        type:String,
+        required:true
+    },
+
     email: {
      type: String,
      unique: true,
@@ -33,7 +39,6 @@ const StakeholderSchema = new mongoose.Schema({
     password: {
      type: String,
      required: true,
-     minlength: 6
     },
     
     address: {
@@ -41,31 +46,37 @@ const StakeholderSchema = new mongoose.Schema({
      required: true,
      minlength: 6,
     },
+
     DOB: {
      type: String,
     },
+
     phoneNo: {
         type: Number,
         required: true,
         minlength: 11,
         maxlength: 11
     },
+
     nationality: {
      type: String,
      required: true,
-     minlength: 6
+     
     },
     stateOfOrigin: {
      type: String,
      required: true,
     },
+
     user:{
         type:String,
         enum:['teacher', 'student', 'parent']
     },
+
     className:{
         type:String
     },
+
     admin:{
     type: Boolean
     },

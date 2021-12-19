@@ -89,6 +89,8 @@ fetch("http://localhost:4000/student")
     showGrp.appendChild(grpMem)
 })
 
+<<<<<<< HEAD
+=======
 const leave = document.querySelector(".top-side p")
 const Home = documen.querySelector("#left-next p")
 leave.addEventListener('click', (e)=>{
@@ -101,3 +103,4 @@ Home.addEventListener('click', (e)=>{
     location.href = 'http://127.0.0.1:5500/frontend/PARENTS/parent.html'
 })
 
+>>>>>>> 09e61f41aa9a01728483baf1890de5a11926f8d1

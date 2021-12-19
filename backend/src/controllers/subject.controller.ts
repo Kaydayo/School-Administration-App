@@ -26,8 +26,17 @@ export const getAllStudentsSubjects = async(req:Request, res:Response) => {
     
     }
 }
+export const updateStudentParent = async (req: Request, res: Response) => {
+    try {
+     const students = await Student.findOneAndUpdate({userId: req.params.id}, req.body, {new:true})
+     res.status(200).json({ message: 'successful', students })
+    } catch (err: any) {
+     console.log(err)
+     res.status(400).send(err.message)
+    }
+}
    
-   
+
 
 export const updateStudentSubjects = async(req:Request, res:Response) =>{
     try{
@@ -36,6 +45,7 @@ export const updateStudentSubjects = async(req:Request, res:Response) =>{
                 subjects: req.body
             }
         }, {new:true})
+        
         res.status(200).json({ message: 'successful', subject })
     }
     catch (err: any) {
@@ -43,6 +53,17 @@ export const updateStudentSubjects = async(req:Request, res:Response) =>{
         res.status(400).send(err.message)
     }
     
+}
+
+export const updateParent = async(req:Request, res:Response) =>{
+    try{
+        const parent = await Student.findOneAndUpdate({userId:req.params.id},  req.body, {new:true})
+        res.status(200).json({ message: 'successful', parent })
+    }
+    catch (err: any) {
+        console.log(err)
+        res.status(400).send(err.message)
+    }
 }
 
 
