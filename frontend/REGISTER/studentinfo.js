@@ -21,19 +21,22 @@ next.addEventListener('click', async (e)=>{
     id = userInfo._id;
    
     let subjects = getCheckedBoxes();
-    let c = document.getElementById('class');
-    let newClass = c.options[c.slelctedIndex].text;
-    let className = {"className": newClass}
-    await fetch(`http://localhost:4000/student/${id}`, {
+    let c = document.getElementById("studentClass");
+    let newClass = c.options[c.selectedIndex].text;
+    console.log(newClass)
+    const parentEmail = document.getElementById('parent-email').value
+    const parentName = document.getElementById('parent-name').value
+    const parentBody = {"parentEmail": parentEmail, "parentName":parentName, "class":newClass}
+    console.log(parentBody)
+    await fetch(`http://localhost:4000/subjectReg/${id}`, {
         method: 'PUT',
         headers: {'Content-type':'application/json'},
-        body: JSON.stringify(className)
+        body: JSON.stringify(parentBody)
     })
-    
     const allSubjects =  subjects.map(async (subject) => {
         const body = {subject:subject}
 
-        const data = await fetch(`http://localhost:4000/subjectReg/${id}`,{
+        const data = await fetch(`http://localhost:4000/subjectReg/subject/${id}`,{
             method: 'PUT',
             headers: {'Content-type':'application/json'},
             body: JSON.stringify(body)

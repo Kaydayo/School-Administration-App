@@ -4,7 +4,7 @@ const express = require('express')
 const socketio = require('socket.io')
 const formatMessage =  require('./utils/messages')
 const {userJoin, getCurrentUser, userLeave} = require('./utils/users')
-const mongoose = require('mongoose')
+
 
 const app = express()
 const server = http.createServer(app)
@@ -44,16 +44,7 @@ io.on('connection', socket => {
     
 } )
 
-const start = async () => {
-    try {
-      await connectDB('mongodb+srv://project:project@cluster0.le2cx.mongodb.net/schoolmgt?retryWrites=true&w=majority');
-      console.log('Connecected to DB')
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
-start();
+
 
 
 
