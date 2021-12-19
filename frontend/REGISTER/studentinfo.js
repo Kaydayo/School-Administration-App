@@ -20,9 +20,16 @@ next.addEventListener('click', async (e)=>{
     const userInfo = JSON.parse(localStorage.getItem("regInfo"))
     id = userInfo._id;
    
-    let subjects = getCheckedBoxes()
-
-
+    let subjects = getCheckedBoxes();
+    let c = document.getElementById('class');
+    let newClass = c.options[c.slelctedIndex].text;
+    let className = {"className": newClass}
+    await fetch(`http://localhost:4000/student/${id}`, {
+        method: 'PUT',
+        headers: {'Content-type':'application/json'},
+        body: JSON.stringify(className)
+    })
+    
     const allSubjects =  subjects.map(async (subject) => {
         const body = {subject:subject}
 

@@ -33,6 +33,7 @@ document.getElementById("phone-number").value =  getSavedValue("phone-number")
 document.getElementById("occupation").value =  getSavedValue("occupation")
 document.getElementById("home-address").value =  getSavedValue("home-address")
 
+
 function saveValue(e){
     var id = e.id;  
     var val = e.value;
@@ -89,6 +90,8 @@ next.addEventListener('click', (e)=>{
     let stateOfOrigin = p.options[p.selectedIndex].text
     let f = document.getElementById("user")
     let user = f.options[f.selectedIndex].text
+    let g = document.getElementById('gender')
+    let gender = g.options[g.selectedIndex].text
     if(!firstName.value){
         error.innerHTML = `<p style="color:red" class='lines'> All credentials must be filled ❗️</p>`
     }else if(!middleName.value){
@@ -130,6 +133,7 @@ next.addEventListener('click', (e)=>{
             "stateOfOrigin": stateOfOrigin,
             "password": password.value.toString(),
             "user": user.toLowerCase(),
+            "gender":gender,
             "isAdmin": false
         }
         
