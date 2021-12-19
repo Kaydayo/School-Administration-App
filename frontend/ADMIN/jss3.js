@@ -54,6 +54,7 @@ async function main() {
   })
 }
 
+
 console.log('SHOW MODAL', showModal)
 
 showModal.addEventListener('click', (e) => {
@@ -79,3 +80,4 @@ showModal.addEventListener('click', (e) => {
       .catch((err) => console.log(err))
   }
 })
+

@@ -2,11 +2,7 @@
 //		"use strict"; window.location.reload();
 //	});
 
-document.addEventListener('DOMContentLoaded', function () {
-  /////// Prevent closing from click inside dropdown
-  if (!token) {
-    window.open("../LOGIN/login.html", "_self")
-  }
+
   document.querySelectorAll('.dropdown-menu').forEach(function (element) {
     element.addEventListener('click', function (e) {
       e.stopPropagation()
@@ -45,23 +41,30 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
   // end if innerWidth
-})
+
 // DOMContentLoaded  end
-document.getElementById("main_nav").addEventListener('click', (e)=>{
-  if(e.target.className == "nav-link"){
-    localStorage.clear()
-    window.open("../LOGIN/login.html", "_self")
-  }
-})
+// document.getElementById("main_nav").addEventListener('click', (e)=>{
+//   if(e.target.className == "nav-link"){
+//     localStorage.clear()
+//     window.open("../LOGIN/login.html", "_self")
+//   }
+// })
 
-document.querySelector('.nav-item #chart').addEventListener('click', (e)=>{
-  e.preventDefault()
-  console.log('here')
-  const data = JSON.parse(localStorage.getItem("userInfo"))
-  const id = data.user._id
-  console.log(id)
-   window.open(`http://localhost:9000/?id=${id}`, "_self")
+// document.querySelector('.nav-item #chart').addEventListener('click', (e)=>{
+//   e.preventDefault()
+//   console.log('here')
+//   const data = JSON.parse(localStorage.getItem("userInfo"))
+//   const id = data.user._id
+//   console.log(id)
+//    window.open(`http://localhost:9000/?id=${id}`, "_self")
 
-})
+// })
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   /////// Prevent closing from click inside dropdown
+//   if (!token) {
+//     window.open("../LOGIN/login.html", "_self")
+//   }
 
 
