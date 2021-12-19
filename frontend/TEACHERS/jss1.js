@@ -19,31 +19,49 @@ async function main() {
     return students.class === 'JSS1'
   })
 
-  console.log(jss1Students)
   const name = document.getElementById('show')
-  jss1Students.forEach((element, index) => {
-    console.log('this is the element', element._id)
+  jss1Students.map((element, index) => {
+    console.log('jss1students', jss1Students)
+    let subjectData = element.subjects
+    let str = ''
+
+    subjectData.forEach((el, i) => {
+      str += `<small class="card-text">#${i + 1} Subject: ${
+        el.subject || 'awaiting registration'
+      } | Score: ${el.grade || 0}</small><hr>`
+    })
+
     name.innerHTML += `<div class="card" style="width: 18rem;">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS61Yc_gkstWIohq87UCRg29WrB5Ik6NfTs0w&usqp=CAU" class="card-img-top" alt="..." width="300px" height="250px">
     <div class="card-body">
-      <h5 class="card-title primary">${element.fullname}</h5>
+      <h5 class="card-title primary">Name:</h5>
+      <p class="card-title primary">${element.fullname}</p>
+      <h5 class="card-title primary">Class:</h5>
       <p class="card-text">${element.class}</p>
-      <p class="card-text"> 'No Subject Registered'</p>
-      <p class="card-text"></p>
-      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" >update grades>>
+      <h5 class="card-text">Registered Subjects:</h5>
+      ${str}
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal${index}">
+    update grades>>
     </button>
     </div>
   </div>
   <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal${index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-    <form id="form${index}" data-id="${element.userId}">
-      <input type="text" class="form-control text" placeholder="subject">
-      <input type="number" class="form-control number" placeholder="grade: numbers only">
-      <button type="submit" id="update" data-id="${element.userId}"  class="btn btn-secondary update">Update</button>
+    ${element.userId}
+    <form id="form${index}">
+      <input type="text" class="form-control text" id=input1-${
+        index + 1
+      } placeholder="subject">
+      <input type="number" class="form-control number" id=input2-${
+        index + 1
+      } placeholder="grade: numbers only">
+      <button type="submit" id="update" data-num=${index + 1} data-id="${
+      element.userId
+    }" class="btn btn-secondary update">Update</button>
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 </form>
     </div>
@@ -51,18 +69,26 @@ async function main() {
 </div>`
   })
 }
+
 //understand datasets
 
 showModal.addEventListener('click', (e) => {
   // console.log(`Show Modal@@@`)
+  e.preventDefault()
   if (e.target.id === `update`) {
-    console.log(e.target.parentElement.dataset.id)
-    let id = document.getElementById('update').dataset.id
-    console.log('this is the idProps', id)
-    e.preventDefault()
-    console.log(`i'm about to update!!!`)
-    let subject = document.querySelector('.text')
-    let grade = document.querySelector('.number')
+    // let id1 = document.getElementById('update').dataset.id
+    // console.log('this is id1', id1)
+    let id = e.target.dataset.id
+    let num = e.target.dataset.num
+    console.log(`i'm about to update!!!`, num)
+    let subject = document.getElementById(`input1-${num}`)
+    let grade = document.getElementById(`input2-${num}`)
+    console.log(subject)
+    console.log(grade)
+
+    if (subject.value && grade.value) alert('Successfully Updated')
+    alert('please put an input')
+
     const obj = {
       subject: subject.value,
       grade: grade.value,

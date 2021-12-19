@@ -74,30 +74,30 @@ async function main() {
       console.log("this is id1", id1)
      let id = e.target.dataset.id
       console.log(`i'm about to update!!!`, e.target)
-      // let subject = document.querySelector('.text')
-      // let grade = document.querySelector('.number')
+      let subject = document.querySelector('.text')
+      let grade = document.querySelector('.number')
 
-      // if(subject.value&&grade.value) alert('Successfully Updated')
-      // alert('please put an input')
+      if(subject.value&&grade.value) alert('Successfully Updated')
+      alert('please put an input')
 
-      // const obj = {
-      //   subject: subject.value,
-      //   grade: grade.value,
-      // }
-      // // console.log('i skipped that line')
+      const obj = {
+        subject: subject.value,
+        grade: grade.value,
+      }
+      // console.log('i skipped that line')
 
-      // // const userData = JSON.parse(localStorage.getItem('userInfo'))
-      // // const id = userData.user._id
-      // console.log("this is the id", id)
-      // fetch(`http://localhost:4000/subjectReg/grade/${id}`, {
-      //   method: 'PUT',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(obj),
-      // })
-      //   .then((raw) => raw.json())
-      //   .then((data) => console.log(data))
-      //   .catch((err) => console.log(err))
+      // const userData = JSON.parse(localStorage.getItem('userInfo'))
+      // const id = userData.user._id
+      console.log("this is the id", id)
+      fetch(`http://localhost:4000/subjectReg/grade/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(obj),
+      })
+        .then((raw) => raw.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err))
     }
   })
