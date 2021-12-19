@@ -3,6 +3,7 @@ import {Request, Response, NextFunction} from 'express'
 import jwt from 'jsonwebtoken'
 import Student from '../models/students.model'
 import Teacher from '../models/teacher.model'
+import Parent from '../models/parents.model'
 import bcrypt from 'bcryptjs'
 
 const generateToken = (userId: string, email:string) => {
@@ -23,13 +24,13 @@ export const register = async (req:Request, res:Response) => {
     const token = generateToken(stakeholder._id, newData.email);
 
     if(stakeholder.user === 'student'){
-        await Student.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, userId: stakeholder._id, subjects: [], class: req.body.className  })
+        await Student.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, userId: stakeholder._id, subjects: [], class: req.body.className, parentEmail:req.body, parentName:req.body})
     }
     else if(stakeholder.user === 'teacher'){
         await Teacher.create({fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,userId: stakeholder._id, subjects: [], class: [] })
     }
     else if (stakeholder.user === 'parent'){
-        await Student.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, subjects: [], class: req.body.className  })
+        await Parent.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, userId: stakeholder._id, ward:[]})
     }
 
     stakeholder.password = undefined;
@@ -40,6 +41,18 @@ export const register = async (req:Request, res:Response) => {
     res.status(400).send('invalid')
     }
 }
+
+export const deleteUser = async (req: Request, res: Response) => {
+   
+    const user = await Stakeholder.findOneAndDelete({ _id: req.params.id});
+   
+    if (!user) {
+     throw new Error(`No product with id : ${req.params.id}`)
+    }
+   
+    await user.remove();
+    res.status(200).json({ message: 'successfully deleted student' })
+   };
  
 
 export const login = async (req:Request, res:Response) => {
@@ -93,14 +106,14 @@ export const logout = async (req:Request, res:Response) => {
 
 
 
-export const updateUserAuth = async(req:Request, res:Response) =>{
-    try{
-        const subject = await Stakeholder.update({_id: req.params.id}, {$set: {admin: req.body}},{upsert:true})
-        res.status(200).json({ message: 'successful', subject })
-    }
-    catch (err: any) {
-        console.log(err)
-        res.status(400).send(err.message)
-    }
+// export const updateUserAuth = async(req:Request, res:Response) =>{
+//     try{
+//         const subject = await Stakeholder.findOneAndUpdate({_id: req.params.id}, {$set: {admin: req.body}}, {upsert:true})
+//         res.status(200).json({ message: 'successful', subject })
+//     }
+//     catch (err: any) {
+//         console.log(err)
+//         res.status(400).send(err.message)
+//     }
     
-}
+// }

@@ -1,4 +1,5 @@
 import Stakeholder from '../models/stakeholders';
+import Parent from '../models/parents.model'
 import { Request, Response } from 'express'
 
 
@@ -56,16 +57,16 @@ export const createParent = async(req:Request, res:Response) =>{
 
 
 export const updateParent = async (req: Request, res: Response) => {
- const id = req.params.id
- console.log(id)
  try {
-  const parents = await Stakeholder.findOneAndUpdate({_id: id}, req.body, {new:true})
+  const parents = await Stakeholder.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
   res.status(200).json({ message: 'successful', parents })
  } catch (err: any) {
   console.log(err)
   res.status(400).send(err.message)
  }
 }
+
+
 
 export const deleteParent = async (req: Request, res: Response) => {
 

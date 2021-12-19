@@ -47,4 +47,3 @@ fetch("http://localhost:4000/student")
     showGrp.appendChild(grpMem)
 })
 
-localStorage.getItem(userInfo)
