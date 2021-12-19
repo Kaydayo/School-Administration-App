@@ -1,55 +1,37 @@
-//	window.addEventListener("resize", function() {
-//		"use strict"; window.location.reload();
-//	});
+const text = document.getElementById('quote')
+const author = document.getElementById('author')
+const tweetButton = document.getElementById('tweet')
 
-document.addEventListener('DOMContentLoaded', function () {
-  /////// Prevent closing from click inside dropdown
-  if (!token) {
-    window.open("../LOGIN/login.html", "_self")
-  }
-  document.querySelectorAll('.dropdown-menu').forEach(function (element) {
-    element.addEventListener('click', function (e) {
-      e.stopPropagation()
-    })
-  })
+const getNewQuote = async () => {
+  //api for quotes
+  var url = 'https://type.fit/api/quotes'
 
-  // make it as accordion for smaller screens
-  if (window.innerWidth < 992) {
-    // close all inner dropdowns when parent is closed
-    document
-      .querySelectorAll('.navbar .dropdown')
-      .forEach(function (everydropdown) {
-        everydropdown.addEventListener('hidden.bs.dropdown', function () {
-          // after dropdown is hidden, then find all submenus
-          this.querySelectorAll('.submenu').forEach(function (everysubmenu) {
-            // hide every submenu as well
-            everysubmenu.style.display = 'none'
-          })
-        })
-      })
+  // fetch the data from api
+  const response = await fetch(url)
+  console.log(typeof response)
+  //convert response to json and store it in quotes array
+  const allQuotes = await response.json()
 
-    document.querySelectorAll('.dropdown-menu a').forEach(function (element) {
-      element.addEventListener('click', function (e) {
-        let nextEl = this.nextElementSibling
-        if (nextEl && nextEl.classList.contains('submenu')) {
-          // prevent opening link if link needs to open dropdown
-          e.preventDefault()
-          console.log(nextEl)
-          if (nextEl.style.display == 'block') {
-            nextEl.style.display = 'none'
-          } else {
-            nextEl.style.display = 'block'
-          }
-        }
-      })
-    })
+  // Generates a random number between 0 and the length of the quotes array
+  const indx = Math.floor(Math.random() * allQuotes.length)
+
+  //Store the quote present at the randomly generated index
+  const quote = allQuotes[indx].text
+
+  //Store the author of the respective quote
+  const auth = allQuotes[indx].author
+
+  if (auth == null) {
+    author = 'Anonymous'
   }
-  // end if innerWidth
-})
-// DOMContentLoaded  end
-document.getElementById("main_nav").addEventListener('click', (e)=>{
-  if(e.target.className == "nav-link"){
-    localStorage.clear()
-    window.open("../LOGIN/login.html", "_self")
-  }
-})
+
+  //function to dynamically display the quote and the author
+  text.innerHTML = quote
+  author.innerHTML = '~ ' + auth
+
+  //tweet the quote
+  tweetButton.href =
+    'https://twitter.com/intent/tweet?text=' + quote + ' ~ ' + auth
+}
+
+getNewQuote()

@@ -3,6 +3,8 @@ const http = require('http');
 const express = require('express')
 const socketio = require('socket.io')
 const formatMessage =  require('./utils/messages')
+const {userJoin, getCurrentUser, userLeave} = require('./utils/users')
+const mongoose = require('mongoose')
 
 const app = express()
 const server = http.createServer(app)
@@ -14,12 +16,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 io.on('connection', socket => {
     console.log('trial...')
     socket.on('joinRoom', ({username, room })=>{
+        const user = userJoin(socket.id, username, room)
+        socket.join(user.room)
+        
+        socket.emit('message', formatMessage(botName , 'welcome to F.M.S Academy group Chat', socket.id))
 
-        socket.join('fmsgroup')
-        socket.emit('message', formatMessage(botName , 'welcome to yoursocket'))
-
-
-    socket.broadcast.emit('message', 'A user has joined the chat');
+        console.log(user.username)
+    socket.broadcast.emit('message', formatMessage(botName , `${user.username} has joined the chat`, socket.id));
  
 
     })
@@ -27,14 +30,30 @@ io.on('connection', socket => {
    
 
     socket.on('chatMessage', msg =>{
-        io.emit('message',formatMessage('USER', msg))
+        const user = getCurrentUser(socket.id)
+        io.emit('message',formatMessage(user.username, msg, socket.id))
     })
 
     socket.on('disconnect', ()=> {
-        io.emit('message', formatMessage(botName ,'A user has left the chat'))
+        const user = userLeave(socket.id)
+        if(user){
+            io.emit('message', formatMessage(botName ,`${user.username} has left the chat`, socket.id))
+        }
+        
     }); 
     
 } )
+
+const start = async () => {
+    try {
+      await connectDB('mongodb+srv://project:project@cluster0.le2cx.mongodb.net/schoolmgt?retryWrites=true&w=majority');
+      console.log('Connecected to DB')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+start();
 
 
 
