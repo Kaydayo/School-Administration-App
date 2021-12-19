@@ -50,21 +50,13 @@
 //   }
 // })
 
-// document.querySelector('.nav-item #chart').addEventListener('click', (e)=>{
-//   e.preventDefault()
-//   console.log('here')
-//   const data = JSON.parse(localStorage.getItem("userInfo"))
-//   const id = data.user._id
-//   console.log(id)
-//    window.open(`http://localhost:9000/?id=${id}`, "_self")
-
-// })
-
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   /////// Prevent closing from click inside dropdown
-//   if (!token) {
-//     window.open("../LOGIN/login.html", "_self")
-//   }
+document.querySelector('.nav-item #chart').addEventListener('click', (e)=>{
+  e.preventDefault()
+  console.log('here')
+  const data = JSON.parse(localStorage.getItem("userInfo"))
+  const id = data.user._id
+  console.log(id)
+  window.open(`http://localhost:9000/?id=${id}`, "_self")
+})
 
 

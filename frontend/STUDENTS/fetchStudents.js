@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault()
+  const token = localStorage.getItem('userInfo')
+  if (!token) {
+    window.open("../LOGIN/login.html", "_self")
+  }
   main()
 })
 let url = 'http://localhost:4000/subjectReg'
@@ -43,6 +47,16 @@ async function main() {
 
 
 }
+
+document.querySelector('.nav-item #chart').addEventListener('click', (e)=>{
+  e.preventDefault()
+  console.log('here')
+  const data = JSON.parse(localStorage.getItem("userInfo"))
+  const id = data.user._id
+  console.log(id)
+  window.open(`http://localhost:9000/?id=${id}`, "_self")
+
+})
 
 
 
