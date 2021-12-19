@@ -1,11 +1,11 @@
 import express from 'express'
-import { updateParentWard, getWards, getAsingle} from '../controllers/wards.controller'
+import { updateParentWard, getWards, getAsingleWard} from '../controllers/wards.controller'
 
 
 const router = express.Router()
 
 router.put('/:id', updateParentWard)
 router.get('/', getWards)
-router.get('/:id', getAsingle)
+router.get('/:id', getAsingleWard)
 
 export default router

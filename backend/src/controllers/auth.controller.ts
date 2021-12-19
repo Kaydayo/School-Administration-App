@@ -24,7 +24,7 @@ export const register = async (req:Request, res:Response) => {
     const token = generateToken(stakeholder._id, newData.email);
 
     if(stakeholder.user === 'student'){
-        await Student.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, userId: stakeholder._id, subjects: [], class: req.body.className, parentEmail:req.body, parentName:req.body})
+        await Student.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, userId: stakeholder._id, subjects: [], class: "", parentEmail:"", parentName:""})
     }
     else if(stakeholder.user === 'teacher'){
         await Teacher.create({fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,userId: stakeholder._id, subjects: [], class: [] })
