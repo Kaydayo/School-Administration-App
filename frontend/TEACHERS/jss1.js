@@ -22,8 +22,7 @@ async function main() {
   console.log(jss1Students)
   const name = document.getElementById('show')
   jss1Students.forEach((element, index) => {
-    console.log(element.fullname)
-    console.log(element)
+    console.log('this is the element', element._id)
     name.innerHTML += `<div class="card" style="width: 18rem;">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS61Yc_gkstWIohq87UCRg29WrB5Ik6NfTs0w&usqp=CAU" class="card-img-top" alt="..." width="300px" height="250px">
     <div class="card-body">
@@ -31,8 +30,7 @@ async function main() {
       <p class="card-text">${element.class}</p>
       <p class="card-text"> 'No Subject Registered'</p>
       <p class="card-text"></p>
-      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    display and update grades>>
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" >update grades>>
     </button>
     </div>
   </div>
@@ -42,10 +40,10 @@ async function main() {
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-    <form id="form${index}">
+    <form id="form${index}" data-id="${element.userId}">
       <input type="text" class="form-control text" placeholder="subject">
       <input type="number" class="form-control number" placeholder="grade: numbers only">
-      <button type="submit" id="update"  class="btn btn-secondary update">Update</button>
+      <button type="submit" id="update" data-id="${element.userId}"  class="btn btn-secondary update">Update</button>
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 </form>
     </div>
@@ -53,19 +51,15 @@ async function main() {
 </div>`
   })
 }
-
-// const newEl = document.querySelectorAll('.form-control')
-// console.log(newEl)
-// const update = document.querySelector('.update')
-// update.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   newEl.map((el) => console.log(el.value))
-// })
-
-console.log('SHOW MODAL', showModal)
+//understand datasets
 
 showModal.addEventListener('click', (e) => {
-  if (e.target.id === 'update') {
+  // console.log(`Show Modal@@@`)
+  if (e.target.id === `update`) {
+    console.log(e.target.parentElement.dataset.id)
+    let id = document.getElementById('update').dataset.id
+    console.log('this is the idProps', id)
+    e.preventDefault()
     console.log(`i'm about to update!!!`)
     let subject = document.querySelector('.text')
     let grade = document.querySelector('.number')
@@ -73,10 +67,11 @@ showModal.addEventListener('click', (e) => {
       subject: subject.value,
       grade: grade.value,
     }
+    // console.log('i skipped that line')
 
-    
-    const userData = JSON.parse(localStorage.getItem('userInfo'))
-    const id = userData.user._id
+    // const userData = JSON.parse(localStorage.getItem('userInfo'))
+    // const id = userData.user._id
+    console.log('this is the id', id)
     fetch(`http://localhost:4000/subjectReg/grade/${id}`, {
       method: 'PUT',
       headers: {
