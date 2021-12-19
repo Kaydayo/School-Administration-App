@@ -15,15 +15,13 @@ async function main() {
   })
   result = await result.json()
   let studentData = result.subject
-  let jss3Students = studentData.filter((students) => {
-    return students.class === 'JSS3'
+  let ss3Students = studentData.filter((students) => {
+    return students.class === 'SSS3'
   })
 
-  console.log(jss3Students)
+  console.log(ss3Students)
   const name = document.getElementById('show')
-  jss3Students.forEach((element, index) => {
-    console.log(element.fullname)
-    console.log(element)
+  ss3Students.forEach((element, index) => {
     name.innerHTML += `<div class="card" style="width: 18rem;">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS61Yc_gkstWIohq87UCRg29WrB5Ik6NfTs0w&usqp=CAU" class="card-img-top" alt="..." width="300px" height="250px">
     <div class="card-body">

@@ -15,13 +15,12 @@ async function main() {
   })
   result = await result.json()
   let studentData = result.subject
-  let jss3Students = studentData.filter((students) => {
-    return students.class === 'JSS3'
+  let jss2Students = studentData.filter((students) => {
+    return students.class === 'JSS2'
   })
 
-  console.log(jss3Students)
   const name = document.getElementById('show')
-  jss3Students.forEach((element, index) => {
+  jss2Students.forEach((element, index) => {
     console.log(element.fullname)
     console.log(element)
     name.innerHTML += `<div class="card" style="width: 18rem;">

@@ -15,13 +15,13 @@ async function main() {
   })
   result = await result.json()
   let studentData = result.subject
-  let jss3Students = studentData.filter((students) => {
-    return students.class === 'JSS3'
+  let jss1Students = studentData.filter((students) => {
+    return students.class === 'JSS1'
   })
 
-  console.log(jss3Students)
+  console.log(jss1Students)
   const name = document.getElementById('show')
-  jss3Students.forEach((element, index) => {
+  jss1Students.forEach((element, index) => {
     console.log(element.fullname)
     console.log(element)
     name.innerHTML += `<div class="card" style="width: 18rem;">
@@ -54,6 +54,14 @@ async function main() {
   })
 }
 
+// const newEl = document.querySelectorAll('.form-control')
+// console.log(newEl)
+// const update = document.querySelector('.update')
+// update.addEventListener('click', (e) => {
+//   e.preventDefault()
+//   newEl.map((el) => console.log(el.value))
+// })
+
 console.log('SHOW MODAL', showModal)
 
 showModal.addEventListener('click', (e) => {
@@ -65,6 +73,8 @@ showModal.addEventListener('click', (e) => {
       subject: subject.value,
       grade: grade.value,
     }
+
+    
     const userData = JSON.parse(localStorage.getItem('userInfo'))
     const id = userData.user._id
     fetch(`http://localhost:4000/subjectReg/grade/${id}`, {

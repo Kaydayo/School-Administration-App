@@ -2,11 +2,7 @@
 //		"use strict"; window.location.reload();
 //	});
 
-document.addEventListener('DOMContentLoaded', function () {
-  /////// Prevent closing from click inside dropdown
-  if (!token) {
-    window.open("../LOGIN/login.html", "_self")
-  }
+
   document.querySelectorAll('.dropdown-menu').forEach(function (element) {
     element.addEventListener('click', function (e) {
       e.stopPropagation()
@@ -45,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
   // end if innerWidth
-})
+
 // DOMContentLoaded  end
 // document.getElementById("main_nav").addEventListener('click', (e)=>{
 //   if(e.target.className == "nav-link"){
