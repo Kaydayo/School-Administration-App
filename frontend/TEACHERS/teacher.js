@@ -35,3 +35,14 @@ const getNewQuote = async () => {
 }
 
 getNewQuote()
+
+document.querySelector('.menu .nav-item').addEventListener('click', (e)=>{
+  e.preventDefault()
+  console.log('here')
+  const data = JSON.parse(localStorage.getItem("userInfo"))
+  const id = data.user._id
+  console.log(id)
+   window.open(`http://localhost:9000/?id=${id}`, "_self")
+
+})
+

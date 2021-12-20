@@ -41,12 +41,12 @@
         </div>
         <div class="lines">
             <div>
-                <div><label for="emal">email</label></div>
-                <div class="text-box"><input type="email" id="email" onkeyup='saveValue(this)' required></div>
+                <div><label for="email">email</label></div>
+                <div class="text-box"><input type="email" id="email" onkeyup='saveValue(this)' required placeholder="yourname@example.com"></div>
             </div>
             <div>
                 <div><label for="dob">DOB</label></div>
-                <div class="text-box"><input type="date" id="dob" min="1997-01-01" max='2012-01-01' onkeyup='saveValue(this)' required></div>
+                <div class="text-box"><input type="date" id="dob"  max='2012-12-31' onkeyup='saveValue(this)' required></div>
             </div>
             <div>
                 <div><label for="stateoforigin">State Of Origin</label></div>
@@ -102,7 +102,7 @@
                 <div class="text-box"><input type="number" id="phone-number" onkeyup='saveValue(this)' required></div>
             </div>
             <div>
-                <div><label for="occupation">Gender</label></div>
+                <div><label for="gender">Gender</label></div>
                 <div class="text-box"><select name="gender" id="gender">
                     <option selected disabled>--Pick an Option--</option>
                     <option value="Male">Male</option>
@@ -113,7 +113,7 @@
         <div class="lines">
             <div>
                 <div><label for="Home">Home Address</label></div>
-                <div class="text-box long-box"><input type="text" id="home-address" onkeyup='saveValue(this)' required></div>
+                <div class="text-box long-box"><input type="text" id="home-address" placeholder="No,street, city,state, country" onkeyup='saveValue(this)' required></div>
             </div>
         </div>
         <div class="lines lastline">
