@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault()
-  const token = localStorage.getItem('userInfo')
-  if (!token) {
-    window.open('../LOGIN/login.html', '_self')
-  }
+  // const token = localStorage.getItem('userInfo')
+  // if (!token) {
+  //   window.open('../LOGIN/login.html', '_self')
+  // }
   main()
 })
-let url = 'http://localhost:4000/teacher'
+let url = 'http://localhost:4000/teacherSubject/'
 
 async function main() {
   let result = await fetch(url, {
@@ -17,15 +17,13 @@ async function main() {
   })
   result = await result.json()
   console.log(result)
-  let parentData = result.teachers
+  let parentData = result.subject
   let table = document.getElementById('table')
   parentData.map((element, index) => {
     console.log(element.firstname)
     table.innerHTML += `<tr>
           <td scope="row">${index + 1}</td>
-          <td id="name${index + 1}">${element.firstname} ${
-      element.lastname
-    }</td>
+          <td id="name${index + 1}">${element.fullname}</td>
           <td id="email${index + 1}">${element.email}</td>
           <td id="phoneno${index + 1}">${element.phoneNo}</td>
           <td id="gender${index + 1}">${element.gender || 'awaiting...'}</td>

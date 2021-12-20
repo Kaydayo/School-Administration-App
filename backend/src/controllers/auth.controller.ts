@@ -27,7 +27,7 @@ export const register = async (req:Request, res:Response) => {
         await Student.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, userId: stakeholder._id, subjects: [], class: "", parentEmail:"", parentName:""})
     }
     else if(stakeholder.user === 'teacher'){
-        await Teacher.create({fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,userId: stakeholder._id, subjects: [], class: [] })
+        await Teacher.create({fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, email:req.body.email, phoneNo: req.body.phoneNo, address:req.body.address, gender: req.body.gender, userId: stakeholder._id, subjects: [], class: [] })
     }
     else if (stakeholder.user === 'parent'){
         await Parent.create({ fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`, userId: stakeholder._id, ward:[]})
