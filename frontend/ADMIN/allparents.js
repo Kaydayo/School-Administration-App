@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault()
-  const token = localStorage.getItem('userInfo')
-  if (!token) {
-    window.open('../LOGIN/login.html', '_self')
-  }
+  // const token = localStorage.getItem('userInfo')
+  // if (!token) {
+  //   window.open('../LOGIN/login.html', '_self')
+  // }
   main()
 })
 let url = 'http://localhost:4000/parent'

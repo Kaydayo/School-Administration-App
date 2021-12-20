@@ -1,7 +1,37 @@
 document.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault()
   main()
+
+  // let button = document.querySelector('.toggle-button')
+  // console.log(button)
+  // let div = document.getElementsByClassName('toggle-div')
+  // console.log(button)
 })
+
+// <input type="button" id="edit_button${
+//         index + 1
+//       }" value="Edit" class="edit" onclick="edit_row(${index + 1})">
+// <input type="button" id="save_button${
+//         index + 1
+//       }" value="Save" class="save" onclick="save_row(${index + 1})">
+// </td>
+//         </tr>`
+//   })
+// }
+
+// function edit_row(no) {
+//   document.getElementById('edit_button' + no).style.display = 'none'
+//   document.getElementById('save_button' + no).style.display = 'block'
+
+//   let address = document.getElementById('address' + no)
+//   let phoneno = document.getElementById('phoneno' + no)
+
+//   let address_data = address.innerHTML
+//   let phoneno_data = phoneno.innerHTML
+
+//   address.innerHTML = `<input type='text' id='name_text${no}'  value= ' ${address_data} ' >`
+//   phoneno.innerHTML = `<input type='text' id='phoneno_text${no}'  value= ' ${phoneno_data} ' >`
+// }
 
 let url = 'http://localhost:4000/subjectReg'
 const showModal = document.getElementById('show')
@@ -26,9 +56,11 @@ async function main() {
     let str = ''
 
     subjectData.forEach((el, i) => {
-      str += `<small class="card-text">#${i + 1} Subject: ${
-        el.subject || 'awaiting registration'
-      } | Score: ${el.grade || 0}</small><hr>`
+      str += `<div id="myDiv"><small class="card-text">#${
+        i + 1
+      } Subject: ${el.subject || 'awaiting registration'} | Score: ${
+        el.grade || 0
+      }</small><hr></div>`
     })
 
     name.innerHTML += `<div class="card" style="width: 18rem;">
@@ -110,3 +142,12 @@ showModal.addEventListener('click', (e) => {
       .catch((err) => console.log(err))
   }
 })
+
+function myFunction() {
+  var x = document.getElementById('myDiv')
+  if (x.style.display === 'none') {
+    x.style.display = 'block'
+  } else {
+    x.style.display = 'none'
+  }
+}
