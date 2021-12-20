@@ -18,7 +18,11 @@ Login.addEventListener('click', (e) => {
             }else if(parseData.data.user.user == "student"){
                 window.open("../STUDENTS/student.html", "_self")
             }else if(parseData.data.user.user == "teacher"){
-                window.open("../TEACHERS/teachers.html", "_self")
+                if(parseData.data.user.admin){
+                    window.open("../ADMIN/admin.html", "_self")
+                }else{
+                    window.open("../TEACHERS/teachers.html", "_self")
+                }
             }
         }else{
             showerr.innerHTML = `<p style='color:red'>${parseData.message}</p>`
