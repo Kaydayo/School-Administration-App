@@ -90,7 +90,7 @@ fetch("http://localhost:4000/student")
 })
 
 const leave = document.querySelector(".top-side p")
-const Home = documen.querySelector("#left-next p")
+const Home = document.querySelector("#left-next p")
 leave.addEventListener('click', (e)=>{
     e.preventDefault()
     history.back()
